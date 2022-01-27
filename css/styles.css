@@ -4736,7 +4736,6 @@ fieldset:disabled .btn {
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-bottom: 50px;
   min-width: 0;
   word-wrap: break-word;
   background-color: #fff;
@@ -5191,7 +5190,7 @@ fieldset:disabled .btn {
   display: flex;
   flex-direction: column;
   padding-left: 0;
-  margin-bottom: 0;
+  margin-bottom: 100px;
 }
 
 .list-group-numbered {
@@ -11643,4 +11642,10 @@ header.masthead .post-heading .meta a {
   .post-preview > a > .post-title {
     font-size: 2.25rem;
   }
+}
+
+/* personal edit */
+.comments {
+  margin-top: 10px;
+  font-weight: normal;
 }
