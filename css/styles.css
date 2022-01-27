@@ -5017,6 +5017,7 @@ fieldset:disabled .btn {
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
+  border-radius: 0.35em;
 }
 .badge:empty {
   display: none;
@@ -11622,7 +11623,7 @@ header.masthead .post-heading .meta a {
 }
 .post-preview > a > .post-title {
   font-size: 1.875rem;
-  margin-top: 1.875rem;
+  /* margin-top: 1.875rem; */
   margin-bottom: 0.625rem;
 }
 .post-preview > a > .post-subtitle {
@@ -11652,4 +11653,9 @@ header.masthead .post-heading .meta a {
 
 .dropdown-item {
   cursor: pointer;
+}
+
+.post-badge {
+  margin-top: 1.875rem;
+  margin-bottom: 0.625rem;
 }
