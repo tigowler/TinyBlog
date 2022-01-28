@@ -11658,4 +11658,9 @@ header.masthead .post-heading .meta a {
 .post-badge {
   margin-top: 1.875rem;
   margin-bottom: 0.625rem;
+  cursor: default;
+}
+
+.btn-accordion {
+  padding: 0.5rem 1rem;
 }
