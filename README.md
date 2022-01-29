@@ -1,1 +1,3 @@
-# do_it_django_atoz_frontend
+# Personal Blog with short porfolio
+
+## Spring Boot / Thymeleaf / Bootstrap
