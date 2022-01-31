@@ -42,7 +42,7 @@
       th:fragment="menu(menu)"
     >
       <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="index.html" th:href="@{/}">neoAA</a>
+        <a class="navbar-brand" href="#" th:href="@{/}">neoAA</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -58,10 +58,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto py-4 py-lg-0">
             <li class="nav-item" th:classappend="${menu} == 'HOME'? 'active'">
-              <a
-                class="nav-link px-lg-3 py-3 py-lg-4"
-                href="index.html "
-                th:href="@{/}"
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="#" th:href="@{/}"
                 >Home<span class="sr-only" th:if="${menu} == 'HOME'"
                   >(current)</span
                 ></a
@@ -70,7 +67,7 @@
             <li class="nav-item" th:classappend="${menu} == 'ABOUT'? 'active'">
               <a
                 class="nav-link px-lg-3 py-3 py-lg-4"
-                href="about.html"
+                href="#"
                 th:href="@{/about}"
                 >About<span class="sr-only" th:if="${menu} == 'ABOUT'"
                   >(current)</span
@@ -83,7 +80,7 @@
             >
               <a
                 class="nav-link px-lg-3 py-3 py-lg-4"
-                href="guest.html"
+                href="#"
                 th:href="@{/guest}"
                 >Guest Book<span class="sr-only" th:if="${menu} == 'GUEST BOOK'"
                   >(current)</span
@@ -96,7 +93,7 @@
             >
               <a
                 class="nav-link px-lg-3 py-3 py-lg-4"
-                href="contact.html"
+                href="#"
                 th:href="@{/contact}"
                 >Contact<span class="sr-only" th:if="${menu} == 'CONTACT'"
                   >(current)</span
