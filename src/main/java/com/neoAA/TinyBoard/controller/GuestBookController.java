@@ -21,6 +21,6 @@ public class GuestBookController {
     public String guestBook(Model model){
         List<GuestBook> mentions = guestRepository.findAll();
         model.addAttribute("mentions", mentions);
-        return "guest";
+        return "guest/list";
     }
 }
