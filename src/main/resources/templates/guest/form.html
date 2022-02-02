@@ -59,28 +59,46 @@
       <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
           <div class="col-md-10 col-lg-8 col-xl-7">
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label"
-                >User Name</label
-              >
-              <input
-                type="email"
-                class="form-control"
-                id="exampleFormControlInput1"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="exampleFormControlTextarea1" class="form-label"
-                >Comments</label
-              >
-              <textarea
-                class="form-control"
-                id="exampleFormControlTextarea1"
-                rows="3"
-              ></textarea>
-            </div>
-            <a class="btn btn-primary text-uppercase" href="#!">OK</a>
-            <a class="btn btn-primary text-uppercase" href="#!">CANCEL</a>
+            <form
+              action="#"
+              th:action="@{/guest/form}"
+              th:object="${guestBook}"
+              method="post"
+            >
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >User Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleFormControlInput1"
+                  th:field="*{name}"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label"
+                  >Comments</label
+                >
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  th:field="*{content}"
+                ></textarea>
+              </div>
+              <div class="text-right">
+                <button type="submit" class="btn btn-primary text-uppercase">
+                  OK
+                </button>
+                <a
+                  th:href="@{/guest}"
+                  type="button"
+                  class="btn btn-primary text-uppercase"
+                  >CANCEL</a
+                >
+              </div>
+            </form>
           </div>
         </div>
       </div>

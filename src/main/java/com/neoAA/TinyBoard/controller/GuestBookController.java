@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -26,7 +28,14 @@ public class GuestBookController {
 
     @GetMapping("/form")
     public String form(Model model){
+        model.addAttribute("guestBook", new GuestBook());
         return "guest/form";
+    }
+
+    @PostMapping("/form")
+    public String commentsSubmit(@ModelAttribute GuestBook guestBook){
+        guestRepository.save(guestBook);
+        return "redirect:/guest";
     }
 
 

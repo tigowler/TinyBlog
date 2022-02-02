@@ -67,7 +67,11 @@
     <!-- Comments-->
     <div class="container px-4 px-lg-5 comments-box">
       <div class="accordion accordion-flush" id="accordionFlushExample">
-        <div class="accordion-item" th:each="mention : ${mentions}">
+        <div
+          class="accordion-item"
+          th:each="i:${#numbers.sequence(mentions.size()-1, 0, -1)}"
+          th:with="mention=${mentions[i]}"
+        >
           <h2
             class="accordion-header"
             id="flush-headingOne"
