@@ -23,4 +23,11 @@ public class GuestBookController {
         model.addAttribute("mentions", mentions);
         return "guest/list";
     }
+
+    @GetMapping("/form")
+    public String form(Model model){
+        return "guest/form";
+    }
+
+
 }
