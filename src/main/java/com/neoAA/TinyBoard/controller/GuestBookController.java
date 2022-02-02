@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -34,6 +36,7 @@ public class GuestBookController {
 
     @PostMapping("/form")
     public String commentsSubmit(@ModelAttribute GuestBook guestBook){
+        guestBook.setTime(Timestamp.valueOf(LocalDateTime.now()));
         guestRepository.save(guestBook);
         return "redirect:/guest";
     }
