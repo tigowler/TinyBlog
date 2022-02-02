@@ -19,4 +19,5 @@ public class GuestBook {
     private String content;
 
     private Timestamp time;
+    private String password;
 }

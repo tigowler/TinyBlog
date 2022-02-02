@@ -40,6 +40,4 @@ public class GuestBookController {
         guestRepository.save(guestBook);
         return "redirect:/guest";
     }
-
-
 }
