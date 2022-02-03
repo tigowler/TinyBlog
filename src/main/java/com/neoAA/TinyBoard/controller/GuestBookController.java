@@ -5,10 +5,7 @@ import com.neoAA.TinyBoard.repository.GuestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -29,7 +26,7 @@ public class GuestBookController {
     }
 
     @GetMapping("/form")
-    public String form(Model model){
+    public String form(Model model, @RequestParam(required = false) Long id){
         model.addAttribute("guestBook", new GuestBook());
         return "guest/form";
     }

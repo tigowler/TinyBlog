@@ -65,6 +65,7 @@
               th:object="${guestBook}"
               method="post"
             >
+              <input type="hidden" th:field="*{id}" />
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label"
                   >User Name</label
@@ -74,17 +75,6 @@
                   class="form-control"
                   id="exampleFormControlInput1"
                   th:field="*{name}"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="exampleFormControlInput2" class="form-label"
-                  >Password</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput2"
-                  th:field="*{password}"
                 />
               </div>
               <div class="mb-3">
