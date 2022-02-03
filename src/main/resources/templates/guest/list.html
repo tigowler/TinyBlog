@@ -67,11 +67,7 @@
     <!-- Comments-->
     <div class="container px-4 px-lg-5 comments-box">
       <div class="accordion accordion-flush" id="accordionFlushExample">
-        <div
-          class="accordion-item"
-          th:each="i:${#numbers.sequence(mentions.size()-1, 0, -1)}"
-          th:with="mention=${mentions[i]}"
-        >
+        <div class="accordion-item" th:each="mention : ${mentions}">
           <h2
             class="accordion-header"
             id="flush-headingOne"
@@ -117,9 +113,13 @@
             data-bs-parent="#accordionFlushExample"
           >
             <div class="accordion-body list-group-item">
-              <button type="button" class="btn btn-primary btn-accordion">
+              <a
+                th:href="@{/guest/form(id=${mention.id})}"
+                type="button"
+                class="btn btn-primary btn-accordion"
+              >
                 Edit
-              </button>
+              </a>
               <button type="button" class="btn btn-danger btn-accordion">
                 Love
               </button>
