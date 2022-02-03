@@ -23,6 +23,7 @@ public class GuestBookController {
     public String guestBook(Model model){
         List<GuestBook> mentions = guestRepository.findAll(Sort.by(Sort.Direction.DESC, "time"));
         model.addAttribute("mentions", mentions);
+
         return "guest/list";
     }
 
