@@ -129,18 +129,46 @@
           </div>
         </nav>
         <div class="justify-content-center">
-          <div id="editor"></div>
-        </div>
-        <div class="text-right footer-btn">
-          <button type="submit" class="btn btn-primary text-uppercase">
-            OK
-          </button>
-          <a
-            th:href="@{/}"
-            type="button"
-            class="btn btn btn-danger text-uppercase"
-            >CANCEL</a
+          <form
+          action="#"
+        >
+        <div id="editor"></div>
+            <label for="exampleFormControlInput1" class="form-label"
+              >Title</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput1"
+            />
+            <label for="exampleFormControlInput2" class="form-label"
+              >Subtitle</label
+            >
+            <input
+              class="form-control"
+              id="exampleFormControlInput2"
+              rows="3"
+            ></input>
+            <label for="exampleFormControlInput3" class="form-label"
+            >Info</label
           >
+          <input
+            class="form-control"
+            id="exampleFormControlInput3"
+            rows="3"
+          ></input>
+          <div class="text-right footer-btn">
+            <button type="submit" class="btn btn-primary text-uppercase">
+              OK
+            </button>
+            <a
+              th:href="@{/}"
+              type="button"
+              class="btn btn btn-danger text-uppercase"
+              >CANCEL</a
+            >
+          </div>
+        </form>
         </div>
       </div>
     </main>
