@@ -11674,3 +11674,7 @@ header.masthead .post-heading .meta a {
 .footer-btn {
   margin-top: 3rem;
 }
+
+.no-visibility {
+  display: none;
+}

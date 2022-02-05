@@ -129,46 +129,25 @@
           </div>
         </nav>
         <div class="justify-content-center">
-          <form
-          action="#"
-        >
-        <div id="editor"></div>
-            <label for="exampleFormControlInput1" class="form-label"
-              >Title</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="exampleFormControlInput1"
-            />
-            <label for="exampleFormControlInput2" class="form-label"
-              >Subtitle</label
-            >
-            <input
-              class="form-control"
-              id="exampleFormControlInput2"
-              rows="3"
-            ></input>
-            <label for="exampleFormControlInput3" class="form-label"
-            >Info</label
-          >
-          <input
-            class="form-control"
-            id="exampleFormControlInput3"
-            rows="3"
-          ></input>
-          <div class="text-right footer-btn">
-            <button type="submit" class="btn btn-primary text-uppercase">
+          <form id="form" action="#" th:action="@{/post/form}" th:object="${post}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <input id="dropdown-category" type="hidden" th:field="*{category}"/>
+            <input id="dropdown-year" type="hidden" th:field="*{year}"/>
+            <textarea class="no-visibility" id="exampleFormControlTextarea1" th:field="*{content}"></textarea>
+            <div id="editor" class="markdownEditor"></div>
+            <label for="exampleFormControlInput1" class="form-label">Title</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" th:field="*{title}"></input>
+            <label for="exampleFormControlInput2" class="form-label">Subtitle</label>
+            <input type="text" class="form-control" id="exampleFormControlInput2" th:field="*{subtitle}"></input>
+            <label for="exampleFormControlInput3" class="form-label">Info</label>
+            <input type="text" class="form-control" id="exampleFormControlInput3" th:field="*{info}"></input>
+            <div class="text-right footer-btn">
+              <button id="submitBtn" class="btn btn-primary text-uppercase">
               OK
-            </button>
-            <a
-              th:href="@{/}"
-              type="button"
-              class="btn btn btn-danger text-uppercase"
-              >CANCEL</a
-            >
-          </div>
-        </form>
+              </button>
+              <a th:href="@{/}" type="button" class="btn btn btn-danger text-uppercase">CANCEL</a>
+            </div>
+          </form>
         </div>
       </div>
     </main>
@@ -221,7 +200,51 @@
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <!-- toast JS-->
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-    <script src="js/toast.js" th:src="@{/js/toast.js}"></script>
-    <script src="js/dropdown.js" th:src="@{/js/dropdown.js}"></script>
+    <!-- <script src="js/toast.js" th:src="@{/js/toast.js}"></script> -->
+    <!-- <script src="js/dropdown.js" th:src="@{/js/dropdown.js}"></script> -->
+    <script type="text/javascript">
+      const Editor = toastui.Editor;
+      const editor = new Editor({
+        el: document.querySelector("#editor"),
+        height: "500px",
+        initialEditType: "markdown",
+        previewStyle: "vertical",
+      });
+
+      const form = document.querySelector("#form");
+      const btn = document.querySelector("#submitBtn");
+      const area = document.querySelector("#exampleFormControlTextarea1");
+      btn.addEventListener('click', ()=>{
+        area.value = editor.getHTML();
+        form.submit();
+      })
+
+      const category_dropdown = document.querySelector("#dropdown-category");
+      const year_dropdown = document.querySelector("#dropdown-year");
+      const categoryDropDown = document.querySelector("#navbarDropdown__category");
+      const sortDropDown = document.querySelector("#navbarDropdown__sort");
+      const categoryDropDownItems = document.querySelector(
+        "#dropdown-menu__category"
+      );
+      const sortDropDownItems = document.querySelector("#dropdown-menu__sort");
+
+      categoryDropDownItems.addEventListener("click", (event) => {
+        category_dropdown.value=event.target.innerHTML;
+        if (event.target.innerHTML == "none") {
+          categoryDropDown.innerHTML = "Category";
+        } else {
+          categoryDropDown.innerHTML = `Category: ${event.target.innerHTML}`;
+        }
+      });
+
+      sortDropDownItems.addEventListener("click", (event) => {
+        year_dropdown.value=event.target.innerHTML;
+        if (event.target.innerHTML == "none") {
+          sortDropDown.innerHTML = "Sort by";
+        } else {
+          sortDropDown.innerHTML = `Sort by: ${event.target.innerHTML}`;
+        }
+      });
+    </script>
   </body>
 </html>

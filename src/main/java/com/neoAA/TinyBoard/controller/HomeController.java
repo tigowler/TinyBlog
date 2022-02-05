@@ -5,8 +5,7 @@ import com.neoAA.TinyBoard.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,8 +20,8 @@ public class HomeController {
     @GetMapping
     public String index(Model model){
         List<Post> posts = postRepository.findAll();
-        System.out.println(posts);
         model.addAttribute("posts", posts);
         return "index";
     }
+
 }
