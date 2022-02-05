@@ -46,11 +46,13 @@
       <div class="container position-relative px-4 px-lg-5">
         <div class="justify-content-center">
           <div class="post-heading">
-            <h1>Man must explore, and this is exploration at its greatest</h1>
-            <h2 class="subheading">
+            <h1 th:text="${post.title}">
+              Man must explore, and this is exploration at its greatest
+            </h1>
+            <h2 class="subheading" th:text="${post.subtitle}">
               Problems look mighty small from 150 miles up
             </h2>
-            <span class="meta">
+            <span class="meta" th:text="${post.info}">
               Posted by Start Bootstrap on August 24, 2021
             </span>
           </div>
@@ -60,8 +62,8 @@
     <!-- Post Content-->
     <article class="mb-4">
       <div class="container px-4 px-lg-5">
-        <div class="justify-content-center">
-          <p>
+        <div class="justify-content-center" th:utext="${post.content}">
+          <!-- <p>
             Never in all their history have men been able truly to conceive of
             the world as one: a single sphere, a globe, having the qualities of
             a globe, a round earth in which all the directions eventually meet,
@@ -152,7 +154,7 @@
             <a href="https://www.flickr.com/photos/nasacommons/"
               >NASA on The Commons</a
             >
-          </p>
+          </p> -->
         </div>
       </div>
     </article>

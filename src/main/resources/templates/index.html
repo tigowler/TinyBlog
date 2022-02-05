@@ -143,7 +143,7 @@
         <div th:each="post :${posts}">
           <!-- Post preview-->
           <div class="post-preview">
-            <a href="#">
+            <a href="#" th:href="@{/post(id=${post.id})}">
               <div class="post-badge">
                 <span class="badge bg-primary" th:text="${post.category}"
                   >Back-end</span
