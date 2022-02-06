@@ -25,8 +25,13 @@ public class PostController {
     }
 
     @GetMapping("/form")
-    public String postForm(Model model){
-        model.addAttribute("post", new Post());
+    public String postForm(Model model, @RequestParam(required = false) Long id){
+        if(id==null){
+            model.addAttribute("post", new Post());
+        } else {
+            Post post = postRepository.findById(id).orElse(null);
+            model.addAttribute("post", post);
+        }
         return "post/post-form";
     }
 
