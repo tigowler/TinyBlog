@@ -124,12 +124,18 @@
                 </ul>
               </li>
             </ul>
-            <form class="d-flex align-items-center">
+            <form
+              class="d-flex align-items-center"
+              method="GET"
+              th:action="@{/}"
+            >
               <input
                 class="form-control me-2"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
+                name="searchText"
+                th:value="${param.searchText}"
               />
               <button class="btn btn-primary text-uppercase" type="submit">
                 Search
@@ -164,16 +170,42 @@
           <!-- Divider-->
           <hr class="my-4" />
         </div>
+        <!-- Pagination -->
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-              <a class="page-link">Previous</a>
+            <li
+              class="page-item"
+              th:classappend="${1 == posts.pageable.pageNumber + 1} ? 'disabled'"
+            >
+              <a
+                class="page-link"
+                th:href="@{/(page=${posts.pageable.pageNumber-1}, searchText=${param.searchText})}"
+                >Previous</a
+              >
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">Next</a>
+            <li
+              class="page-item"
+              th:each="i : ${#numbers.sequence(startPage, endPage)}"
+              th:classappend="${i==posts.pageable.pageNumber + 1} ? 'disabled'"
+            >
+              <a
+                class="page-link"
+                href="#"
+                th:text="${i}"
+                th:href="@{/(page=${i-1}, searchText=${param.searchText})}"
+                >1</a
+              >
+            </li>
+            <li
+              class="page-item"
+              th:classappend="${posts.totalPages == posts.pageable.pageNumber + 1} ? 'disabled'"
+            >
+              <a
+                class="page-link"
+                href="#"
+                th:href="@{/(page=${posts.pageable.pageNumber+1}, searchText=${param.searchText})}"
+                >Next</a
+              >
             </li>
           </ul>
         </nav>
