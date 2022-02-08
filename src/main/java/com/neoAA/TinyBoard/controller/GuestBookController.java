@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -40,7 +42,11 @@ public class GuestBookController {
     }
 
     @PostMapping("/form")
-    public String commentsSubmit(@ModelAttribute GuestBook guestBook){
+    public String commentsSubmit(@Valid @ModelAttribute GuestBook guestBook, BindingResult bindingResult){
+        System.out.println(bindingResult);
+        if(bindingResult.hasErrors()){
+            return "guest/form";
+        }
         guestBook.setTime(Timestamp.valueOf(LocalDateTime.now()));
         guestRepository.save(guestBook);
         return "redirect:/guest";

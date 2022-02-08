@@ -63,30 +63,45 @@
               action="#"
               th:action="@{/guest/form}"
               th:object="${guestBook}"
-              method="post"
+              method="POST"
             >
               <input type="hidden" th:field="*{id}" />
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >User Name</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
-                  th:field="*{name}"
-                />
+                <label for="name" class="form-label">User Name</label>
+                <div class="input-group">
+                  <span class="input-group-text" id="basic-addon1">@</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    th:field="*{name}"
+                    th:classappend="${#fields.hasErrors('name')} ? 'is-invalid'"
+                  />
+                  <div
+                    class="invalid-feedback"
+                    th:if="${#fields.hasErrors('name')}"
+                    th:errors="*{name}"
+                  >
+                    User Name is too short😫
+                  </div>
+                </div>
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label"
-                  >Comments</label
-                >
+                <label for="content" class="form-label">Comments</label>
                 <textarea
                   class="form-control"
-                  id="exampleFormControlTextarea1"
+                  id="content"
                   rows="3"
                   th:field="*{content}"
+                  th:classappend="${#fields.hasErrors('content')} ? 'is-invalid'"
                 ></textarea>
+                <div
+                  class="invalid-feedback"
+                  th:if="${#fields.hasErrors('content')}"
+                  th:errors="*{content}"
+                >
+                  comment is too short😫
+                </div>
               </div>
               <div class="text-right">
                 <button type="submit" class="btn btn-primary text-uppercase">
@@ -109,7 +124,7 @@
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+    <script src="js/scripts.js" th:src="@{/js/scripts.js}"></script>
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <!-- * *                               SB Forms JS                               * *-->
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
