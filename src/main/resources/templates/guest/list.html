@@ -113,16 +113,25 @@
             data-bs-parent="#accordionFlushExample"
           >
             <div class="accordion-body list-group-item">
-              <a
-                th:href="@{/guest/form(id=${mention.id})}"
-                type="button"
-                class="btn btn-primary btn-accordion"
+              <form
+                th:action="@{/guest/{id}(id=${mention.id})}"
+                th:method="delete"
               >
-                Edit
-              </a>
-              <button type="button" class="btn btn-danger btn-accordion">
-                DELETE
-              </button>
+                <a
+                  th:href="@{/guest/form(id=${mention.id})}"
+                  type="button"
+                  class="btn btn-primary btn-accordion"
+                >
+                  EDIT
+                </a>
+                <button
+                  type="submit"
+                  value="delete"
+                  class="btn btn-danger btn-accordion"
+                >
+                  DELETE
+                </button>
+              </form>
             </div>
           </div>
         </div>
