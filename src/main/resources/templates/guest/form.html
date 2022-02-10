@@ -81,9 +81,7 @@
                     class="invalid-feedback"
                     th:if="${#fields.hasErrors('name')}"
                     th:errors="*{name}"
-                  >
-                    User Name is too short😫
-                  </div>
+                  ></div>
                 </div>
               </div>
               <div class="mb-3">
@@ -99,9 +97,7 @@
                   class="invalid-feedback"
                   th:if="${#fields.hasErrors('content')}"
                   th:errors="*{content}"
-                >
-                  comment is too short😫
-                </div>
+                ></div>
               </div>
               <div class="text-right">
                 <button type="submit" class="btn btn-primary text-uppercase">
