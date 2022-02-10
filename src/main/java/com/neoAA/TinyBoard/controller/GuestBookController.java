@@ -43,7 +43,6 @@ public class GuestBookController {
 
     @PostMapping("/form")
     public String commentsSubmit(@Valid @ModelAttribute GuestBook guestBook, BindingResult bindingResult){
-        System.out.println(bindingResult);
         if(bindingResult.hasErrors()){
             return "guest/form";
         }

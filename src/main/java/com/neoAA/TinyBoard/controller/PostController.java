@@ -5,8 +5,10 @@ import com.neoAA.TinyBoard.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -36,7 +38,11 @@ public class PostController {
     }
 
     @PostMapping("/form")
-    public String form(@ModelAttribute Post post){
+    public String form(@Valid @ModelAttribute Post post, BindingResult bindingResult){
+        System.out.println(bindingResult);
+        if (bindingResult.hasErrors()){
+            return "post/post-form";
+        }
         postRepository.save(post);
         return "redirect:/";
     }

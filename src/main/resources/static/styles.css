@@ -11678,3 +11678,7 @@ header.masthead .post-heading .meta a {
 .no-visibility {
   display: none;
 }
+
+.input__post-head {
+  margin-top: 3rem;
+}
