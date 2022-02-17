@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
   <head th:fragment="menu(title)">
     <meta charset="utf-8" />
     <meta
@@ -9,7 +12,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Clean Blog</title>
-    <!-- Font Awesome icons (free version)-->
+    <!-- Font Awesome icons (free version) -->
     <script
       src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
       crossorigin="anonymous"
@@ -42,7 +45,31 @@
       th:fragment="menu(menu)"
     >
       <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="#" th:href="@{/}">neoAA</a>
+        <div class="navbar-nav">
+          <a th:href="@{/account/login}" sec:authorize="!isAuthenticated()"
+            >Login</a
+          >
+          <a
+            class="ml-3"
+            th:href="@{/account/register}"
+            sec:authorize="!isAuthenticated()"
+            >Join</a
+          >
+          <form
+            th:action="@{/logout}"
+            method="post"
+            sec:authorize="isAuthenticated()"
+          >
+            <img
+              sec:authorize="hasRole('ROLE_USER')"
+              src="img/chess-rook-solid.svg"
+              width="20"
+              height="20"
+            />
+            <span sec:authentication="name">user</span>
+            <button class="btn-logout ml-3" type="submit">Logout</button>
+          </form>
+        </div>
         <button
           class="navbar-toggler"
           type="button"

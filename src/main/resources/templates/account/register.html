@@ -8,7 +8,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Login</title>
+    <title>Register</title>
     <!-- Font Awesome icons (free version)-->
     <script
       src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
@@ -37,7 +37,7 @@
   </head>
   <body class="text-center">
     <main class="form-signin">
-      <form th:action="@{/account/login}" method="post">
+      <form th:action="@{/account/register}" method="post">
         <a th:href="@{/}">
           <img
             class="mb-4"
@@ -47,13 +47,7 @@
             height="57"
           />
         </a>
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-        <div th:if="${param.error}" class="alert alert-danger" role="alert">
-          Invalid username and password.
-        </div>
-        <div th:if="${param.logout}" class="alert alert-primary" role="alert">
-          You have been logged out.
-        </div>
+        <h1 class="h3 mb-3 fw-normal">Please Join 😙</h1>
 
         <div class="form-floating">
           <input
@@ -81,9 +75,7 @@
             <input type="checkbox" value="remember-me" /> Remember me
           </label>
         </div> -->
-        <button class="w-100 btn btn-lg btn-primary" type="submit">
-          Sign in
-        </button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Join</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
       </form>
     </main>

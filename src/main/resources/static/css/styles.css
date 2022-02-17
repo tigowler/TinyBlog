@@ -11682,3 +11682,9 @@ header.masthead .post-heading .meta a {
 .input__post-head {
   margin-top: 3rem;
 }
+
+.btn-logout {
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+}
