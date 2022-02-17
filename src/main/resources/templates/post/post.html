@@ -32,7 +32,7 @@
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
       crossorigin="anonymous"
     />
-    <link href="styles.css" th:href="@{/styles.css}" rel="stylesheet" />
+    <link href="css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
   </head>
   <body>
     <!-- Navigation-->
@@ -71,19 +71,19 @@
               th:href="@{/post/form(id=${post.id})}"
               >EDIT</a
             >
-            <a
-              th:href="@{/}"
-              type="button"
-              class="btn btn btn-danger text-uppercase footer-btn"
-              >BACK</a
-            >
             <button
               type="submit"
               value="delete"
-              class="btn btn-warning text-uppercase footer-btn"
+              class="btn btn-danger text-uppercase footer-btn"
             >
               DELETE
             </button>
+            <a
+              th:href="@{/}"
+              type="button"
+              class="btn btn-secondary text-uppercase footer-btn"
+              >BACK</a
+            >
           </form>
         </div>
       </div>
