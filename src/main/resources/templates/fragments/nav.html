@@ -35,108 +35,107 @@
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
       crossorigin="anonymous"
     />
-    <link href="css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
+    <!-- <link href="css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" /> -->
+    <link
+      href="css/sidebar.css"
+      th:href="@{/css/sidebar.css}"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- Navigation-->
-    <nav
-      class="navbar navbar-expand-lg navbar-light"
-      id="mainNav"
-      th:fragment="menu(menu)"
-    >
-      <div class="container px-4 px-lg-5">
-        <div class="navbar-nav">
-          <a th:href="@{/account/login}" sec:authorize="!isAuthenticated()"
-            >Login</a
-          >
-          <a
-            class="ml-3"
-            th:href="@{/account/register}"
-            sec:authorize="!isAuthenticated()"
-            >Join</a
-          >
-          <form
-            th:action="@{/logout}"
-            method="post"
-            sec:authorize="isAuthenticated()"
-          >
-            <img
-              sec:authorize="hasRole('ROLE_USER')"
-              src="img/chess-rook-solid.svg"
-              width="20"
-              height="20"
-            />
-            <img
-              sec:authorize="hasRole('ROLE_ADMIN')"
-              src="img/chess-queen-solid.svg"
-              width="20"
-              height="20"
-            />
-            <span sec:authentication="name">user</span>
-            <button class="btn-logout ml-3" type="submit">Logout</button>
-          </form>
+    <div class="l-navbar" id="navbar" th:fragment="menu(menu)">
+      <nav class="nav">
+        <div>
+          <div class="nav__brand">
+            <ion-icon
+              name="menu-outline"
+              class="nav__toggle"
+              id="nav-toggle"
+            ></ion-icon>
+            <div class="nav__logo" sec:authorize="isAuthenticated()">
+              <ion-icon
+                sec:authorize="hasRole('ROLE_USER')"
+                name="paw"
+              ></ion-icon>
+              <ion-icon
+                sec:authorize="hasRole('ROLE_ADMIN')"
+                name="planet"
+              ></ion-icon>
+              <span sec:authentication="name">User</span>
+            </div>
+          </div>
+          <div class="nav__list">
+            <a
+              href="#"
+              th:href="@{/}"
+              class="nav__link"
+              th:classappend="${menu} == 'HOME' ? 'active'"
+            >
+              <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+              <span class="nav__name">Home</span>
+            </a>
+            <a
+              href="#"
+              th:href="@{/guest}"
+              class="nav__link"
+              th:classappend="${menu} == 'GUEST BOOK' ? 'active'"
+            >
+              <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
+              <span class="nav__name">Guest Book</span>
+            </a>
+            <div
+              class="nav__link collapsed"
+              th:href="@{/}"
+              th:classappend="${menu} == 'HOME' ? 'active'"
+            >
+              <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
+              <span class="nav__name">Projects</span>
+
+              <ion-icon
+                name="chevron-down-outline"
+                class="collapse__link"
+              ></ion-icon>
+
+              <ul class="collapse__menu">
+                <a href="#" th:href="@{/}" class="collapse__sublink">All</a>
+                <a href="#" th:href="@{/}" class="collapse__sublink">Back</a>
+                <a href="#" th:href="@{/}" class="collapse__sublink">Front</a>
+                <a href="#" th:href="@{/}" class="collapse__sublink">Mobile</a>
+              </ul>
+            </div>
+            <a
+              href="#"
+              class="nav__link"
+              th:href="@{/contact}"
+              th:classappend="${menu} == 'CONTACT' ? 'active'"
+            >
+              <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+              <span class="nav__name">Contact</span>
+            </a>
+          </div>
         </div>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarResponsive"
-          aria-controls="navbarResponsive"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+        <a
+          href="#"
+          class="nav__link"
+          th:href="@{/account/login}"
+          sec:authorize="!isAuthenticated()"
         >
-          Menu
-          <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ms-auto py-4 py-lg-0">
-            <li class="nav-item" th:classappend="${menu} == 'HOME'? 'active'">
-              <a class="nav-link px-lg-3 py-3 py-lg-4" href="#" th:href="@{/}"
-                >Home<span class="sr-only" th:if="${menu} == 'HOME'"
-                  >(current)</span
-                ></a
-              >
-            </li>
-            <li class="nav-item" th:classappend="${menu} == 'ABOUT'? 'active'">
-              <a
-                class="nav-link px-lg-3 py-3 py-lg-4"
-                href="#"
-                th:href="@{/about}"
-                >About<span class="sr-only" th:if="${menu} == 'ABOUT'"
-                  >(current)</span
-                ></a
-              >
-            </li>
-            <li
-              class="nav-item"
-              th:classappend="${menu} == 'GUEST BOOK'? 'active'"
-            >
-              <a
-                class="nav-link px-lg-3 py-3 py-lg-4"
-                href="#"
-                th:href="@{/guest}"
-                >Guest Book<span class="sr-only" th:if="${menu} == 'GUEST BOOK'"
-                  >(current)</span
-                ></a
-              >
-            </li>
-            <li
-              class="nav-item"
-              th:classappend="${menu} == 'CONTACT'? 'active'"
-            >
-              <a
-                class="nav-link px-lg-3 py-3 py-lg-4"
-                href="#"
-                th:href="@{/contact}"
-                >Contact<span class="sr-only" th:if="${menu} == 'CONTACT'"
-                  >(current)</span
-                ></a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+          <ion-icon name="log-in-outline" class="nav__icon"></ion-icon>
+          <span class="nav__name">LogIn</span>
+        </a>
+        <form
+          th:action="@{/logout}"
+          method="post"
+          sec:authorize="isAuthenticated()"
+        >
+          <button type="submit" class="btn-logout nav__link">
+            <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+            <span class="nav__name">Logout</span>
+          </button>
+        </form>
+      </nav>
+    </div>
 
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -34,29 +34,28 @@
     />
     <link href="css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
   </head>
-  <body>
+  <body id="body-pd">
     <!-- Navigation-->
     <nav
       class="navbar navbar-expand-lg navbar-light"
       id="mainNav"
       th:replace="fragments/nav :: menu('HOME')"
     ></nav>
-    <!-- Page Header-->
-    <header class="masthead">
-      <div class="container position-relative px-4 px-lg-5">
-        <div class="justify-content-center">
-          <div class="site-heading">
-            <h1>Clean Blog</h1>
-            <span class="subheading"
-              >A Tiny Blog by Start Bootstrap & Spring Boot</span
-            >
-          </div>
-        </div>
-      </div>
-    </header>
-
     <!-- Main Content-->
     <div class="container px-4 px-lg-5">
+      <!-- Page Header-->
+      <header class="masthead">
+        <div class="container position-relative px-4 px-lg-5">
+          <div class="justify-content-center">
+            <div class="site-heading">
+              <h1>Clean Blog</h1>
+              <span class="subheading"
+                >A Tiny Blog by Start Bootstrap & Spring Boot</span
+              >
+            </div>
+          </div>
+        </div>
+      </header>
       <!-- inner nav -->
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -224,7 +223,17 @@
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js" th:src="@{/js/scripts.js}"></script>
+    <!-- <script src="js/scripts.js" th:src="@{/js/scripts.js}"></script> -->
     <script src="js/dropdown.js" th:src="@{/js/dropdown.js}"></script>
+    <!-- IONICONS -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule=""
+      src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="js/sidebar.js" th:src="@{/js/sidebar.js}"></script>
   </body>
 </html>
