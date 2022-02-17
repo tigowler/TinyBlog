@@ -66,6 +66,12 @@
               width="20"
               height="20"
             />
+            <img
+              sec:authorize="hasRole('ROLE_ADMIN')"
+              src="img/chess-queen-solid.svg"
+              width="20"
+              height="20"
+            />
             <span sec:authentication="name">user</span>
             <button class="btn-logout ml-3" type="submit">Logout</button>
           </form>
