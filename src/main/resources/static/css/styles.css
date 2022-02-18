@@ -10,8 +10,11 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap");
 
 :root {
+  /* 임의 추가 */
+  --main-font: "Ubuntu", sans-serif;
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
@@ -88,7 +91,8 @@
 
 body {
   margin: 0;
-  font-family: var(--bs-body-font-family);
+  /* font-family: var(--bs-body-font-family); */
+  font-family: var(--main-font);
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
@@ -125,10 +129,11 @@ h1,
 .h1 {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  /* font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
-  font-weight: 800;
+    "Segoe UI Symbol", "Noto Color Emoji"; */
+  font-family: var(--main-font);
+  font-weight: 700;
   line-height: 1.2;
 }
 
@@ -288,7 +293,8 @@ pre,
 code,
 kbd,
 samp {
-  font-family: var(--bs-font-monospace);
+  /* font-family: var(--bs-font-monospace); */
+  font-family: var(--main-font);
   font-size: 1em;
   direction: ltr /* rtl:ignore */;
   unicode-bidi: bidi-override;
@@ -3066,10 +3072,11 @@ textarea.form-control.is-invalid {
 
 .btn {
   display: inline-block;
-  font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  font-family: var(--main-font);
+  /* font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
-  font-weight: 800;
+    "Segoe UI Symbol", "Noto Color Emoji"; */
+  font-weight: 700;
   line-height: 1.5;
   color: #212529;
   text-align: center;
@@ -5794,9 +5801,10 @@ fieldset:disabled .btn {
   z-index: 1080;
   display: block;
   margin: 0;
-  font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  font-family: var(--main-font);
+  /* font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
+    "Segoe UI Symbol", "Noto Color Emoji"; */
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -5909,9 +5917,10 @@ fieldset:disabled .btn {
   z-index: 1070;
   display: block;
   max-width: 276px;
-  font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  font-family: var(--main-font);
+  /* font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
+    "Segoe UI Symbol", "Noto Color Emoji"; */
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -7670,7 +7679,8 @@ fieldset:disabled .btn {
 }
 
 .font-monospace {
-  font-family: var(--bs-font-monospace) !important;
+  /* font-family: var(--bs-font-monospace) !important; */
+  font-family: var(--main-font) !important;
 }
 
 .fs-1 {
@@ -11426,22 +11436,23 @@ blockquote {
   z-index: 1030;
   border-bottom: 1px solid #dee2e6;
   background-color: #fff;
-  font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  font-family: var(--main-font);
+  /* font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
+    "Segoe UI Symbol", "Noto Color Emoji"; */
 }
 #mainNav .navbar-brand {
-  font-weight: 800;
+  font-weight: 700;
 }
 #mainNav .navbar-toggler {
   font-size: 0.75rem;
-  font-weight: 800;
+  font-weight: 700;
   padding: 0.75rem;
   text-transform: uppercase;
 }
 #mainNav .navbar-nav > li.nav-item > a.nav-link {
   font-size: 0.75rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.0625em;
   text-transform: uppercase;
 }
@@ -11548,9 +11559,10 @@ header.masthead .site-heading .subheading {
   line-height: 1.1;
   display: block;
   margin-top: 0.625rem;
-  font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  font-family: var(--main-font);
+  /* font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
+    "Segoe UI Symbol", "Noto Color Emoji"; */
 }
 header.masthead .post-heading h1,
 header.masthead .post-heading .h1 {
@@ -11563,16 +11575,18 @@ header.masthead .post-heading .subheading {
 }
 header.masthead .post-heading .subheading {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 500;
   margin: 0.75rem 0 2rem;
-  font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  font-family: var(--main-font);
+  /* font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
+    "Segoe UI Symbol", "Noto Color Emoji"; */
 }
 header.masthead .post-heading .meta {
   font-size: 1.25rem;
   font-weight: 300;
   font-style: italic;
+  font-family: var(--main-font);
   font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji";
@@ -11689,12 +11703,11 @@ header.masthead .post-heading .meta a {
   outline: 0;
 }
 
-.sidebar{
+.sidebar {
   height: 100vh;
   box-shadow: 5px 7px 25px #999;
 }
 
-.bottom-border{
+.bottom-border {
   border-bottom: 2px groove #999;
 }
-
