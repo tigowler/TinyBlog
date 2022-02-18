@@ -37,7 +37,7 @@
   </head>
   <body class="text-center">
     <main class="form-signin">
-      <form th:action="@{/account/register}" method="post">
+      <form th:action="@{/account/register}" method="post" th:object="${user}">
         <a th:href="@{/}">
           <img
             class="mb-4"
@@ -56,7 +56,14 @@
             id="username"
             name="username"
             placeholder="User name"
+            th:field="*{username}"
+            th:classappend="${#fields.hasErrors('username')} ? 'is-invalid'"
           />
+          <div
+            class="invalid-feedback"
+            th:if="${#fields.hasErrors('username')}"
+            th:errors="*{username}"
+          ></div>
           <label for="username">User name</label>
         </div>
         <div class="form-floating">
@@ -66,7 +73,14 @@
             id="floatingPassword"
             name="password"
             placeholder="Password"
+            th:field="*{password}"
+            th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'"
           />
+          <div
+            class="invalid-feedback"
+            th:if="${#fields.hasErrors('password')}"
+            th:errors="*{password}"
+          ></div>
           <label for="floatingPassword">Password</label>
         </div>
 
@@ -75,7 +89,9 @@
             <input type="checkbox" value="remember-me" /> Remember me
           </label>
         </div> -->
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Join</button>
+        <button class="w-100 btn btn-lg btn-primary footer-btn" type="submit">
+          Join
+        </button>
         <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
       </form>
     </main>
