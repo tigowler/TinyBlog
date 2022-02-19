@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
@@ -21,22 +22,25 @@ public class PostController {
     private PostRepository postRepository;
 
     @GetMapping
-    public String post(Model model, @RequestParam(required = true) Long id){
+    public String post(Model model, @RequestParam(required = true) Long id,
+                       HttpServletRequest request){
         Post post = postRepository.findById(id).orElse(null);
+        String referer = request.getHeader("Referer");
         model.addAttribute("post", post);
-
+        model.addAttribute("referer", referer);
         return "post/post";
     }
 
     @GetMapping("/list")
     public String postList(Model model, @PageableDefault(size = 2) Pageable pageable,
-                        @RequestParam(required = false, defaultValue = "") String searchText){
+                           @RequestParam(required = false, defaultValue = "") String searchText){
         Page<Post> posts = postRepository.findByTitleContainingOrContentContaining(searchText, searchText, pageable);
         int startPage = Math.max(1, posts.getPageable().getPageNumber()-4);
         int endPage = Math.min(posts.getTotalPages(), posts.getPageable().getPageNumber()+4);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
         model.addAttribute("posts", posts);
+
         return "post/list";
     }
 
@@ -64,6 +68,6 @@ public class PostController {
     @DeleteMapping("/{id}")
     public String deletePost(@PathVariable Long id){
         postRepository.deleteById(id);
-        return "redirect:/";
+        return "redirect:/post";
     }
 }
