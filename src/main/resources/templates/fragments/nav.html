@@ -87,7 +87,7 @@
             <div
               class="nav__link collapsed"
               th:href="@{/}"
-              th:classappend="${menu} == 'HOME' ? 'active'"
+              th:classappend="${menu} == 'POST' ? 'active'"
             >
               <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
               <span class="nav__name">Projects</span>
@@ -98,10 +98,18 @@
               ></ion-icon>
 
               <ul class="collapse__menu">
-                <a href="#" th:href="@{/}" class="collapse__sublink">All</a>
-                <a href="#" th:href="@{/}" class="collapse__sublink">Back</a>
-                <a href="#" th:href="@{/}" class="collapse__sublink">Front</a>
-                <a href="#" th:href="@{/}" class="collapse__sublink">Mobile</a>
+                <a href="#" th:href="@{/post/list}" class="collapse__sublink"
+                  >All</a
+                >
+                <a href="#" th:href="@{/post/list}" class="collapse__sublink"
+                  >Back</a
+                >
+                <a href="#" th:href="@{/post/list}" class="collapse__sublink"
+                  >Front</a
+                >
+                <a href="#" th:href="@{/post/list}" class="collapse__sublink"
+                  >Mobile</a
+                >
               </ul>
             </div>
             <a

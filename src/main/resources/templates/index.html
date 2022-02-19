@@ -33,191 +33,51 @@
       crossorigin="anonymous"
     />
     <link href="css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
+    <link
+      href="css/sidebar.css"
+      th:href="@{/css/sidebar.css}"
+      rel="stylesheet"
+    />
   </head>
   <body id="body-pd">
     <!-- Navigation-->
-    <nav
-      class="navbar navbar-expand-lg navbar-light"
-      id="mainNav"
-      th:replace="fragments/nav :: menu('HOME')"
-    ></nav>
-    <!-- Main Content-->
-    <div class="container px-4 px-lg-5">
-      <!-- Page Header-->
-      <header class="masthead">
-        <div class="container position-relative px-4 px-lg-5">
-          <div class="justify-content-center">
-            <div class="site-heading">
-              <h1>Clean Blog</h1>
-              <span class="subheading"
-                >A Tiny Blog by Start Bootstrap & Spring Boot</span
-              >
-            </div>
+    <div th:replace="fragments/nav :: menu('HOME')"></div>
+    <!-- Page Header-->
+    <header class="masthead">
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="justify-content-center">
+          <div class="page-heading">
+            <h1>About Me</h1>
+            <span class="subheading">This is what I do.</span>
           </div>
-        </div>
-      </header>
-      <!-- inner nav -->
-      <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <div class="navbar-brand" href="#">🐉</div>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown__category"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Categories
-                </a>
-                <ul
-                  class="dropdown-menu"
-                  id="dropdown-menu__category"
-                  aria-labelledby="navbarDropdown"
-                >
-                  <li><span class="dropdown-item">Back-end</span></li>
-                  <li><span class="dropdown-item">Front-end</span></li>
-                  <li><span class="dropdown-item">Mobile</span></li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li>
-                    <span class="dropdown-item">none</span>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown__sort"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Sort by
-                </a>
-                <ul
-                  class="dropdown-menu"
-                  id="dropdown-menu__sort"
-                  aria-labelledby="navbarDropdown"
-                >
-                  <li><span class="dropdown-item">date</span></li>
-                  <li><span class="dropdown-item">name</span></li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li>
-                    <span class="dropdown-item">none</span>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-            <form
-              class="d-flex align-items-center"
-              method="GET"
-              th:action="@{/}"
-            >
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-                name="searchText"
-                th:value="${param.searchText}"
-              />
-              <button class="btn btn-primary text-uppercase" type="submit">
-                Search
-              </button>
-            </form>
-          </div>
-        </div>
-      </nav> -->
-      <!-- posts -->
-      <div class="justify-content-center">
-        <div th:each="post :${posts}">
-          <!-- Post preview-->
-          <div class="post-preview">
-            <a href="#" th:href="@{/post(id=${post.id})}">
-              <div class="post-badge">
-                <span class="badge bg-primary" th:text="${post.category}"
-                  >Back-end</span
-                >
-                <span class="badge bg-info" th:text="${post.year}">2021</span>
-              </div>
-              <h2 class="post-title" th:text="${post.title}">
-                Man must explore, and this is exploration at its greatest
-              </h2>
-              <h3 class="post-subtitle" th:text="${post.subtitle}">
-                Problems look mighty small from 150 miles up
-              </h3>
-            </a>
-            <p class="post-meta" th:text="${post.info}">
-              Posted by Start Bootstrap on September 24, 2021
-            </p>
-          </div>
-          <!-- Divider-->
-          <hr class="my-4" />
-        </div>
-        <!-- Pagination -->
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <li
-              class="page-item"
-              th:classappend="${1 == posts.pageable.pageNumber + 1} ? 'disabled'"
-            >
-              <a
-                class="page-link"
-                th:href="@{/(page=${posts.pageable.pageNumber-1}, searchText=${param.searchText})}"
-                >Previous</a
-              >
-            </li>
-            <li
-              class="page-item"
-              th:each="i : ${#numbers.sequence(startPage, endPage)}"
-              th:classappend="${i==posts.pageable.pageNumber + 1} ? 'disabled'"
-            >
-              <a
-                class="page-link"
-                href="#"
-                th:text="${i}"
-                th:href="@{/(page=${i-1}, searchText=${param.searchText})}"
-                >1</a
-              >
-            </li>
-            <li
-              class="page-item"
-              th:classappend="${posts.totalPages == posts.pageable.pageNumber + 1} ? 'disabled'"
-            >
-              <a
-                class="page-link"
-                href="#"
-                th:href="@{/(page=${posts.pageable.pageNumber+1}, searchText=${param.searchText})}"
-                >Next</a
-              >
-            </li>
-          </ul>
-        </nav>
-        <div class="d-flex justify-content-end mb-4">
-          <a
-            class="btn btn-primary text-uppercase"
-            href="#!"
-            th:href="@{/post/form}"
-            >WRITE</a
-          >
         </div>
       </div>
-    </div>
+    </header>
+    <!-- Main Content-->
+    <main class="mb-4">
+      <div class="container px-4 px-lg-5">
+        <div class="justify-content-center">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
+            nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis
+            sit soluta odio, adipisci quas excepturi maxime quae totam ducimus
+            consectetur?
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius
+            praesentium recusandae illo eaque architecto error, repellendus
+            iusto reprehenderit, doloribus, minus sunt. Numquam at quae
+            voluptatum in officia voluptas voluptatibus, minus!
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut
+            consequuntur magnam, excepturi aliquid ex itaque esse est vero natus
+            quae optio aperiam soluta voluptatibus corporis atque iste neque sit
+            tempora!
+          </p>
+        </div>
+      </div>
+    </main>
     <!-- Footer-->
     <footer class="border-top" th:replace="fragments/footer :: footer"></footer>
     <!-- Bootstrap core JS-->
