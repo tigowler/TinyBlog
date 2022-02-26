@@ -62,7 +62,7 @@ public class PostController {
             return "post/post-form";
         }
         postRepository.save(post);
-        return "redirect:/";
+        return "redirect:/post/list";
     }
 
     @DeleteMapping("/{id}")

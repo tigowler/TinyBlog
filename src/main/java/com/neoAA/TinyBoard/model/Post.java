@@ -2,10 +2,7 @@ package com.neoAA.TinyBoard.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -20,8 +17,6 @@ public class Post {
     private String title;
     @Size(min = 2, max = 30, message = "❌ The subtitle must be between {min} and {max} characters long :(")
     private String subtitle;
-    @Size(min = 2, max = 30, message = "❌ The info must be between {min} and {max} characters long :(")
-    private String info;
 
     @Size(min = 15, message = "❌ The content must be at least {min} characters long :(")
     private String content;
@@ -29,4 +24,8 @@ public class Post {
     private String category;
     @NotEmpty(message = "❌ Please select year!")
     private String year;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 }

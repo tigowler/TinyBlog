@@ -204,21 +204,6 @@
               th:if="${#fields.hasErrors('subtitle')}"
               th:errors="*{subtitle}"
             ></div>
-            <label for="exampleFormControlInput3" class="form-label"
-              >Info</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="exampleFormControlInput3"
-              th:field="*{info}"
-              th:classappend="${#fields.hasErrors('info')} ? 'is-invalid'"
-            />
-            <div
-              class="invalid-feedback"
-              th:if="${#fields.hasErrors('info')}"
-              th:errors="*{info}"
-            ></div>
             <div class="text-right footer-btn">
               <button id="submitBtn" class="btn btn-primary text-uppercase">
                 OK
@@ -243,6 +228,15 @@
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <!-- IONICONS -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule=""
+      src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"
+    ></script>
     <!-- toast JS-->
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
     <script src="js/toast.js" th:src="@{/js/toast.js}"></script>
