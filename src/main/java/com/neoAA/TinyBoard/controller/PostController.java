@@ -1,11 +1,14 @@
 package com.neoAA.TinyBoard.controller;
 
+import com.neoAA.TinyBoard.Service.PostService;
 import com.neoAA.TinyBoard.model.Post;
 import com.neoAA.TinyBoard.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +23,9 @@ public class PostController {
 
     @Autowired
     private PostRepository postRepository;
+
+    @Autowired
+    private PostService postService;
 
     @GetMapping
     public String post(Model model, @RequestParam(required = true) Long id,
@@ -56,12 +62,15 @@ public class PostController {
     }
 
     @PostMapping("/form")
-    public String form(@Valid @ModelAttribute Post post, BindingResult bindingResult){
+    public String form(@Valid @ModelAttribute Post post, BindingResult bindingResult, Authentication authentication){
         System.out.println(bindingResult);
         if (bindingResult.hasErrors()){
             return "post/post-form";
         }
-        postRepository.save(post);
+//        Authentication authentication1 = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        postService.save(username, post);
+//        postRepository.save(post);
         return "redirect:/post/list";
     }
 
