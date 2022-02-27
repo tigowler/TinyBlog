@@ -1,5 +1,6 @@
 package com.neoAA.TinyBoard.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -27,5 +28,6 @@ public class Post {
 
     @ManyToOne
     @JoinColumn(name="user_id")
+    @JsonIgnore
     private User user;
 }

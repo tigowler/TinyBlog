@@ -2,6 +2,7 @@ package com.neoAA.TinyBoard.controller;
 
 import com.neoAA.TinyBoard.Service.UserService;
 import com.neoAA.TinyBoard.model.User;
+import com.neoAA.TinyBoard.validator.AccountValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,9 @@ public class AccountController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AccountValidator accountValidator;
+
     @GetMapping("login")
     public String login(){
         return "account/login";
@@ -32,7 +36,8 @@ public class AccountController {
     }
 
     @PostMapping("register")
-    public String register(@Valid User user, BindingResult bindingResult){
+    public String register(@Valid @ModelAttribute User user, BindingResult bindingResult){
+        accountValidator.validate(user, bindingResult);
         if (bindingResult.hasErrors()){
             return "account/register";
         }

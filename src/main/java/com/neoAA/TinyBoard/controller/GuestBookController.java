@@ -56,6 +56,4 @@ public class GuestBookController {
         guestRepository.deleteById(id);
         return "redirect:/guest";
     }
-
-
 }

@@ -61,7 +61,7 @@
           />
           <div
             class="invalid-feedback"
-            th:if="${#fields.hasErrors('username')}"
+            th:if="${#fields.hasErrors('${user.username}')}"
             th:errors="*{username}"
           ></div>
           <label for="username">User name</label>
@@ -78,7 +78,7 @@
           />
           <div
             class="invalid-feedback"
-            th:if="${#fields.hasErrors('password')}"
+            th:if="${#fields.hasErrors('${user.password}')}"
             th:errors="*{password}"
           ></div>
           <label for="floatingPassword">Password</label>

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -65,27 +67,26 @@
       <div class="container px-4 px-lg-5">
         <div class="justify-content-center" th:utext="${post.content}"></div>
         <div class="d-flex justify-content-end mb-4">
-          <form th:action="@{/post/{id}(id=${post.id})}" th:method="delete">
-            <a
-              class="btn btn-primary text-uppercase footer-btn"
-              href="#!"
-              th:href="@{/post/form(id=${post.id})}"
-              >EDIT</a
-            >
-            <button
-              type="submit"
-              value="delete"
-              class="btn btn-danger text-uppercase footer-btn"
-            >
-              DELETE
-            </button>
-            <a
-              th:href="@{${referer}}"
-              type="button"
-              class="btn btn-secondary text-uppercase footer-btn"
-              >BACK</a
-            >
-          </form>
+          <a
+            class="btn btn-primary text-uppercase footer-btn"
+            href="#!"
+            th:href="@{/post/form(id=${post.id})}"
+            >EDIT</a
+          >
+          <button
+            type="button"
+            sec:authorize="hasRole('ROLE_ADMIN')"
+            th:onclick="|deletePost(${post.id})|"
+            class="btn btn-danger text-uppercase footer-btn"
+          >
+            DELETE
+          </button>
+          <a
+            th:href="@{${referer}}"
+            type="button"
+            class="btn btn-secondary text-uppercase footer-btn"
+            >BACK</a
+          >
         </div>
       </div>
     </article>
@@ -93,6 +94,7 @@
     <footer class="border-top" th:replace="fragments/footer :: footer"></footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- IONICONS -->
     <script
       type="module"
@@ -103,5 +105,24 @@
       src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"
     ></script>
     <script src="js/sidebar.js" th:src="@{/js/sidebar.js}"></script>
+    <!-- delete post button -->
+    <script>
+      function deletePost(id) {
+        console.log("clicked!");
+        //DELETE /api/post/{id}
+        $.ajax({
+          url: "/api/post/" + id,
+          type: "DELETE",
+          beforeSend: function (jqXHR, settings) {
+            var header = $("meta[name='_csrf_header']").attr("content");
+            var token = $("meta[name='_csrf']").attr("content");
+            jqXHR.setRequestHeader(header, token);
+          },
+          success: function (result) {
+            window.location.href = "/post/list";
+          },
+        });
+      }
+    </script>
   </body>
 </html>
