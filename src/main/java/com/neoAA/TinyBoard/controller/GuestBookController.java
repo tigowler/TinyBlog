@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -30,7 +31,10 @@ public class GuestBookController {
     }
 
     @GetMapping("/form")
-    public String form(Model model, @RequestParam(required = false) Long id){
+    public String form(Model model, @RequestParam(required = false) Long id,
+                       Principal principal){
+        String username = principal.getName();
+        model.addAttribute("username", username);
         if(id==null){
             model.addAttribute("guestBook", new GuestBook());
         } else {
@@ -42,11 +46,13 @@ public class GuestBookController {
     }
 
     @PostMapping("/form")
-    public String commentsSubmit(@Valid @ModelAttribute GuestBook guestBook, BindingResult bindingResult){
+    public String commentsSubmit(@Valid @ModelAttribute GuestBook guestBook, BindingResult bindingResult,
+                                 Principal principal){
         if(bindingResult.hasErrors()){
             return "guest/form";
         }
         guestBook.setTime(Timestamp.valueOf(LocalDateTime.now()));
+        guestBook.setName(principal.getName());
         guestRepository.save(guestBook);
         return "redirect:/guest";
     }

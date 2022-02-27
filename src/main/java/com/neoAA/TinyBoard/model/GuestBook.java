@@ -18,7 +18,6 @@ public class GuestBook {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min = 2, max = 10, message = "❌ The name must be between {min} and {max} characters long :(")
     private String name;
 
     @NotEmpty(message = "❌ The comment must not be empty :(")

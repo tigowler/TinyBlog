@@ -41,14 +41,10 @@
                     type="text"
                     class="form-control"
                     id="name"
-                    th:field="*{name}"
-                    th:classappend="${#fields.hasErrors('name')} ? 'is-invalid'"
+                    th:value="${username}"
+                    disabled
+                    readonly
                   />
-                  <div
-                    class="invalid-feedback"
-                    th:if="${#fields.hasErrors('name')}"
-                    th:errors="*{name}"
-                  ></div>
                 </div>
               </div>
               <div class="mb-3">
