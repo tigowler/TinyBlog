@@ -14,9 +14,9 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min = 2, max = 30, message = "❌ The title must be between {min} and {max} characters long :(")
+    @Size(min = 2, max = 50, message = "❌ The title must be between {min} and {max} characters long :(")
     private String title;
-    @Size(min = 2, max = 30, message = "❌ The subtitle must be between {min} and {max} characters long :(")
+    @Size(min = 2, max = 50, message = "❌ The subtitle must be between {min} and {max} characters long :(")
     private String subtitle;
 
     @Size(min = 15, message = "❌ The content must be at least {min} characters long :(")
