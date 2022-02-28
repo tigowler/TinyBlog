@@ -35,4 +35,12 @@ public class User {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<GuestBook> guestBooks = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(
+        name = "user_post",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "post_id")
+    )
+    private List<Post> postsLoved = new ArrayList<>();
 }

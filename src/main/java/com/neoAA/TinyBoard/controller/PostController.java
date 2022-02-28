@@ -2,6 +2,7 @@ package com.neoAA.TinyBoard.controller;
 
 import com.neoAA.TinyBoard.Service.PostService;
 import com.neoAA.TinyBoard.model.Post;
+import com.neoAA.TinyBoard.model.User;
 import com.neoAA.TinyBoard.repository.PostRepository;
 import com.neoAA.TinyBoard.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,18 @@ public class PostController {
         model.addAttribute("post", post);
         model.addAttribute("referer", referer);
         model.addAttribute("isOwner", postService.isOwner(authentication, post));
+
+        if (authentication==null){
+            model.addAttribute("love", "LOVE");
+            return "post/post";
+        }
+        User user = userRepository.findByUsername(authentication.getName());
+        if(user.getPostsLoved().contains(post)){
+            model.addAttribute("love", "UNLOVE");
+        }
+        else {
+            model.addAttribute("love", "LOVE");
+        }
         return "post/post";
     }
 

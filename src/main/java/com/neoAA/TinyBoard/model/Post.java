@@ -6,6 +6,8 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -30,4 +32,8 @@ public class Post {
     @JoinColumn(name="user_id")
     @JsonIgnore
     private User user;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "postsLoved")
+    private List<User> usersLoved = new ArrayList<>();
 }

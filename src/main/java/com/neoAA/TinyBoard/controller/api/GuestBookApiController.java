@@ -1,9 +1,13 @@
 package com.neoAA.TinyBoard.controller.api;
 
 import com.neoAA.TinyBoard.model.GuestBook;
+import com.neoAA.TinyBoard.model.Post;
+import com.neoAA.TinyBoard.model.User;
 import com.neoAA.TinyBoard.repository.GuestRepository;
+import com.neoAA.TinyBoard.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
@@ -15,6 +19,9 @@ import java.util.List;
 public class GuestBookApiController {
     @Autowired
     private GuestRepository guestRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/guest")
     List<GuestBook> all(){
