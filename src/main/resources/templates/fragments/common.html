@@ -56,17 +56,19 @@
               class="nav__toggle"
               id="nav-toggle"
             ></ion-icon>
-            <div class="nav__logo" sec:authorize="isAuthenticated()">
-              <ion-icon
-                sec:authorize="hasRole('ROLE_USER')"
-                name="paw"
-              ></ion-icon>
-              <ion-icon
-                sec:authorize="hasRole('ROLE_ADMIN')"
-                name="planet"
-              ></ion-icon>
-              <span sec:authentication="name">User</span>
-            </div>
+            <a th:href="@{/setting}" sec:authorize="isAuthenticated()">
+              <div class="nav__logo">
+                <ion-icon
+                  sec:authorize="hasRole('ROLE_USER')"
+                  name="paw"
+                ></ion-icon>
+                <ion-icon
+                  sec:authorize="hasRole('ROLE_ADMIN')"
+                  name="planet"
+                ></ion-icon>
+                <span sec:authentication="name">User</span>
+              </div>
+            </a>
           </div>
           <div class="nav__list">
             <a
@@ -189,6 +191,8 @@
 
     <!-- Scripts -->
     <div th:fragment="scripts(goal)">
+      <!-- Tooltips -->
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
       <!-- Bootstrap core JS-->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

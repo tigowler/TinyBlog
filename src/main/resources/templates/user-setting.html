@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/common :: head('USER')"> </head>
+  <body id="body-pd">
+    <!-- Navigation-->
+    <nav
+      class="navbar navbar-expand-lg navbar-light"
+      id="mainNav"
+      th:replace="fragments/common :: menu('CONTACT')"
+    ></nav>
+    <!-- Page Header-->
+    <header class="masthead">
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="justify-content-center">
+          <div class="site-heading">
+            <h1 sec:authentication="name">User</h1>
+            <div>
+              <ion-icon
+                size="large"
+                sec:authorize="hasRole('ROLE_USER')"
+                name="paw"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="User"
+              ></ion-icon>
+              <span class="px-2"></span>
+              <ion-icon
+                size="large"
+                sec:authorize="hasRole('ROLE_ADMIN')"
+                name="planet"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Administrator"
+              ></ion-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Content -->
+    <div class="container px-4 py-5" id="featured-3">
+      <h2 class="pb-2 border-bottom">My Posts & Comments</h2>
+      <div class="row g-4 py-5">
+        <!-- My Posts -->
+        <div class="feature col">
+          <ion-icon
+            size="large"
+            name="folder-outline"
+            class="nav__icon"
+          ></ion-icon>
+          <h2>Posts</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="width: 10%" scope="col">#</th>
+                <th style="width: 90%" scope="col">Title</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="post : ${posts}">
+                <th scope="row" th:text="${post.id}">1</th>
+                <td class="cell-long">
+                  <a
+                    th:href="@{/post(id=${post.id})}"
+                    th:text="${post.title}"
+                    class="text-overflow"
+                    >Post Title
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="text-right">
+            <a th:href="@{/post/list}" class="icon-link"> View all posts</a>
+          </div>
+        </div>
+        <!-- My Comments -->
+        <div class="feature col">
+          <ion-icon
+            size="large"
+            name="chatbubbles-outline"
+            class="nav__icon"
+          ></ion-icon>
+          <h2>Comments</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="width: 10%" scope="col">#</th>
+                <th style="width: 90%" scope="col">Title</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="comment : ${comments}">
+                <th scope="row" th:text="${comment.id}">1</th>
+                <td class="cell-long">
+                  <span th:text="${comment.content}" class="text-overflow">
+                    Comment Title
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="text-right">
+            <a th:href="@{/guest}" class="icon-link"> View all Comments</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer-->
+    <footer class="border-top" th:replace="fragments/common :: footer"></footer>
+    <!-- Scripts-->
+    <div th:replace="fragments/common :: scripts('USER')"></div>
+    <script>
+      var tooltipTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      );
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+    </script>
+  </body>
+</html>

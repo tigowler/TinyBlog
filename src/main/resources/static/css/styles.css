@@ -11711,3 +11711,17 @@ header.masthead .post-heading .meta a {
 .bottom-border {
   border-bottom: 2px groove #999;
 }
+
+.table {
+  table-layout: fixed;
+}
+.text-overflow {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cell-long {
+  width: 200px;
+}
