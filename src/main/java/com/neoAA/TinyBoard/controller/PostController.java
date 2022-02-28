@@ -73,10 +73,4 @@ public class PostController {
 //        postRepository.save(post);
         return "redirect:/post/list";
     }
-
-    @DeleteMapping("/{id}")
-    public String deletePost(@PathVariable Long id){
-        postRepository.deleteById(id);
-        return "redirect:/post";
-    }
 }

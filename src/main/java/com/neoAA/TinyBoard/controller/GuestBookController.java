@@ -1,9 +1,11 @@
 package com.neoAA.TinyBoard.controller;
 
+import com.neoAA.TinyBoard.Service.GuestBookService;
 import com.neoAA.TinyBoard.model.GuestBook;
 import com.neoAA.TinyBoard.repository.GuestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +24,9 @@ public class GuestBookController {
     @Autowired
     private GuestRepository guestRepository;
 
+    @Autowired
+    private GuestBookService guestBookService;
+
     @GetMapping
     public String guestBook(Model model){
         List<GuestBook> mentions = guestRepository.findAll(Sort.by(Sort.Direction.DESC, "time"));
@@ -32,8 +37,8 @@ public class GuestBookController {
 
     @GetMapping("/form")
     public String form(Model model, @RequestParam(required = false) Long id,
-                       Principal principal){
-        String username = principal.getName();
+                       Authentication authentication){
+        String username = authentication.getName();
         model.addAttribute("username", username);
         if(id==null){
             model.addAttribute("guestBook", new GuestBook());
@@ -47,13 +52,15 @@ public class GuestBookController {
 
     @PostMapping("/form")
     public String commentsSubmit(@Valid @ModelAttribute GuestBook guestBook, BindingResult bindingResult,
-                                 Principal principal){
+                                 Authentication authentication){
         if(bindingResult.hasErrors()){
             return "guest/form";
         }
-        guestBook.setTime(Timestamp.valueOf(LocalDateTime.now()));
-        guestBook.setName(principal.getName());
-        guestRepository.save(guestBook);
+//        guestBook.setTime(Timestamp.valueOf(LocalDateTime.now()));
+//        guestBook.setName(principal.getName());
+//        guestRepository.save(guestBook);
+        String username = authentication.getName();
+        guestBookService.save(username, guestBook);
         return "redirect:/guest";
     }
 

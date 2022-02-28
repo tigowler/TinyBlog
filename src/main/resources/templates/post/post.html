@@ -61,9 +61,8 @@
     <div th:replace="fragments/common :: scripts('POST')"></div>
     <!-- delete post button -->
     <script>
+      //DELETE /api/post/{id}
       function deletePost(id) {
-        console.log("clicked!");
-        //DELETE /api/post/{id}
         $.ajax({
           url: "/api/post/" + id,
           type: "DELETE",

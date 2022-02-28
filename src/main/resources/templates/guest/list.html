@@ -60,7 +60,9 @@
               />
               <div class="d-flex gap-2 w-100 justify-content-between">
                 <div>
-                  <h5 class="mb-0" th:text="|@${mention.name}|">@guestname</h5>
+                  <h5 class="mb-0" th:text="|@${mention.user.username}|">
+                    @guestname
+                  </h5>
                   <h6 class="mb-0 comments" th:text="${mention.content}">
                     comments from my dear friend (*/ω＼*)
                   </h6>
@@ -80,26 +82,24 @@
             data-bs-parent="#accordionFlushExample"
           >
             <div class="accordion-body list-group-item">
-              <form
-                th:action="@{/guest/{id}(id=${mention.id})}"
-                th:method="delete"
+              <a href="#" type="button" class="btn btn-danger btn-accordion">
+                LOVE
+              </a>
+              <a
+                th:href="@{/guest/form(id=${mention.id})}"
+                type="button"
+                class="btn btn-primary btn-accordion"
               >
-                <a
-                  th:href="@{/guest/form(id=${mention.id})}"
-                  type="button"
-                  class="btn btn-primary btn-accordion"
-                >
-                  EDIT
-                </a>
-                <button
-                  type="submit"
-                  value="delete"
-                  class="btn btn-danger btn-accordion"
-                  sec:authorize="hasRole('ROLE_ADMIN')"
-                >
-                  DELETE
-                </button>
-              </form>
+                EDIT
+              </a>
+              <button
+                type="button"
+                class="btn btn-secondary btn-accordion"
+                sec:authorize="hasRole('ROLE_ADMIN')"
+                th:onclick="|deleteComment(${mention.id})|"
+              >
+                DELETE
+              </button>
             </div>
           </div>
         </div>
@@ -109,5 +109,22 @@
     <footer class="border-top" th:replace="fragments/common :: footer"></footer>
     <!-- Scripts-->
     <div th:replace="fragments/common :: scripts('GUEST BOOK')"></div>
+    <script>
+      // DELETE api/guest/{id}
+      function deleteComment(id) {
+        $.ajax({
+          url: "/api/guest/" + id,
+          type: "DELETE",
+          beforeSend: function (jqXHR, settings) {
+            var header = $("meta[name='_csrf_header']").attr("content");
+            var token = $("meta[name='_csrf']").attr("content");
+            jqXHR.setRequestHeader(header, token);
+          },
+          success: function (result) {
+            window.location.href = "/guest";
+          },
+        });
+      }
+    </script>
   </body>
 </html>
