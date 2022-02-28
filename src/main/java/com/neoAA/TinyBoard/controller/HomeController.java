@@ -26,6 +26,7 @@ public class HomeController {
         model.addAttribute("posts", user.getPost());
         model.addAttribute("comments", user.getGuestBooks());
         model.addAttribute("postsLoved", user.getPostsLoved());
+        model.addAttribute("commentsLoved", user.getGuestBooksLoved());
         return "user-setting";
     }
 

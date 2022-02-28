@@ -159,10 +159,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr th:each="comment : ${comments}">
-                <th scope="row" th:text="${comment.id}">1</th>
+              <tr th:each="commentLoved : ${commentsLoved}">
+                <th scope="row" th:text="${commentLoved.id}">1</th>
                 <td class="cell-long">
-                  <span th:text="${comment.content}" class="text-overflow">
+                  <span th:text="${commentLoved.content}" class="text-overflow">
                     Comment Title
                   </span>
                 </td>
