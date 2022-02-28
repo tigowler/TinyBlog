@@ -82,14 +82,26 @@
             data-bs-parent="#accordionFlushExample"
           >
             <div class="accordion-body list-group-item">
-              <a href="#" type="button" class="btn btn-danger btn-accordion">
-                LOVE
-              </a>
+              <span sec:authorize="!isAuthenticated()"
+                >If you wanna send LOVE to this comment,
+                <a th:href="@{/account/login}">LOGIN!</a></span
+              >
+              <button
+                type="button"
+                th:id="|love_btn${mention.id}|"
+                class="btn btn-danger btn-accordion"
+                th:onclick="|loveToggleComment(${mention.id})|"
+                sec:authorize="isAuthenticated()"
+              >
+                <span
+                  th:text="${#lists.contains(user.guestBooksLoved, mention)} ? 'UNLOVE' : 'LOVE'"
+                ></span>
+              </button>
               <a
                 th:href="@{/guest/form(id=${mention.id})}"
                 type="button"
                 class="btn btn-primary btn-accordion"
-                th:if="${mention.getUser.getId}==${userId}"
+                th:if="${mention.getUser.getId}==${user.getId}"
               >
                 EDIT
               </a>
@@ -125,6 +137,39 @@
             window.location.href = "/guest";
           },
         });
+      }
+
+      //PUT /api/guest/love/{id}
+      function loveToggleComment(id) {
+        const loveBtn = document.querySelector("#love_btn" + id);
+        if (loveBtn.firstElementChild.innerHTML == "LOVE") {
+          $.ajax({
+            url: "/api/guest/love/" + id,
+            type: "PUT",
+            beforeSend: function (jqXHR, settings) {
+              var header = $("meta[name='_csrf_header']").attr("content");
+              var token = $("meta[name='_csrf']").attr("content");
+              jqXHR.setRequestHeader(header, token);
+            },
+            success: function (result) {
+              loveBtn.firstElementChild.innerHTML = "UNLOVE";
+            },
+          });
+        } //PUT /api/guest/unlove/{id}
+        else if (loveBtn.firstElementChild.innerHTML == "UNLOVE") {
+          $.ajax({
+            url: "/api/guest/unlove/" + id,
+            type: "PUT",
+            beforeSend: function (jqXHR, settings) {
+              var header = $("meta[name='_csrf_header']").attr("content");
+              var token = $("meta[name='_csrf']").attr("content");
+              jqXHR.setRequestHeader(header, token);
+            },
+            success: function (result) {
+              loveBtn.firstElementChild.innerHTML = "LOVE";
+            },
+          });
+        }
       }
     </script>
   </body>

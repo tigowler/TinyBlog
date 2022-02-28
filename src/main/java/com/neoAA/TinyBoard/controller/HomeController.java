@@ -1,8 +1,6 @@
 package com.neoAA.TinyBoard.controller;
 
 import com.neoAA.TinyBoard.model.User;
-import com.neoAA.TinyBoard.repository.GuestRepository;
-import com.neoAA.TinyBoard.repository.PostRepository;
 import com.neoAA.TinyBoard.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +25,7 @@ public class HomeController {
         User user = userRepository.findByUsername(authentication.getName());
         model.addAttribute("posts", user.getPost());
         model.addAttribute("comments", user.getGuestBooks());
+        model.addAttribute("postsLoved", user.getPostsLoved());
         return "user-setting";
     }
 

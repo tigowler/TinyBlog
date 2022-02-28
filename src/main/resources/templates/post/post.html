@@ -89,10 +89,9 @@
         });
       }
 
-      const loveBtn = document.querySelector("#love_btn");
-
-      //POST /api/post/love/{id}
+      //PUT /api/post/love/{id}
       function loveTogglePost(id) {
+        const loveBtn = document.querySelector("#love_btn");
         if (loveBtn.firstElementChild.innerHTML == "LOVE") {
           $.ajax({
             url: "/api/post/love/" + id,
@@ -106,7 +105,7 @@
               loveBtn.firstElementChild.innerHTML = "UNLOVE";
             },
           });
-        } //POST /api/post/unlove/{id}
+        } //PUT /api/post/unlove/{id}
         else if (loveBtn.firstElementChild.innerHTML == "UNLOVE") {
           $.ajax({
             url: "/api/post/unlove/" + id,

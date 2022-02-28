@@ -37,7 +37,7 @@
         </div>
       </div>
     </header>
-    <!-- Content -->
+    <!-- My Contents -->
     <div class="container px-4 py-5" id="featured-3">
       <h1 class="pb-2 border-bottom">My Posts & Comments</h1>
       <div class="row g-4 py-5">
@@ -75,6 +75,75 @@
           </div>
         </div>
         <!-- My Comments -->
+        <div class="feature col">
+          <ion-icon
+            size="large"
+            name="chatbubbles-outline"
+            class="nav__icon"
+          ></ion-icon>
+          <h2>Comments</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="width: 10%" scope="col">#</th>
+                <th style="width: 90%" scope="col">Title</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="comment : ${comments}">
+                <th scope="row" th:text="${comment.id}">1</th>
+                <td class="cell-long">
+                  <span th:text="${comment.content}" class="text-overflow">
+                    Comment Title
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="text-right">
+            <a th:href="@{/guest}" class="icon-link"> View all Comments</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Loved Contents -->
+    <div class="container px-4 py-5" id="featured-3">
+      <h1 class="pb-2 border-bottom">Posts & Comments I Loved</h1>
+      <div class="row g-4 py-5">
+        <!-- Loved Posts -->
+        <div class="feature col">
+          <ion-icon
+            size="large"
+            name="folder-outline"
+            class="nav__icon"
+          ></ion-icon>
+          <h2>Posts</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="width: 10%" scope="col">#</th>
+                <th style="width: 90%" scope="col">Title</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="postLoved : ${postsLoved}">
+                <th scope="row" th:text="${postLoved.id}">1</th>
+                <td class="cell-long">
+                  <a
+                    th:href="@{/post(id=${postLoved.id})}"
+                    th:text="${postLoved.title}"
+                    class="text-overflow"
+                    >Post Title
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="text-right">
+            <a th:href="@{/post/list}" class="icon-link"> View all posts</a>
+          </div>
+        </div>
+        <!-- Loved Comments -->
         <div class="feature col">
           <ion-icon
             size="large"

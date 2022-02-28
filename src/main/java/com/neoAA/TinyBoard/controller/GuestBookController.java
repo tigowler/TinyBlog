@@ -2,7 +2,9 @@ package com.neoAA.TinyBoard.controller;
 
 import com.neoAA.TinyBoard.Service.GuestBookService;
 import com.neoAA.TinyBoard.model.GuestBook;
+import com.neoAA.TinyBoard.model.User;
 import com.neoAA.TinyBoard.repository.GuestRepository;
+import com.neoAA.TinyBoard.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
@@ -24,13 +26,17 @@ public class GuestBookController {
     private GuestRepository guestRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private GuestBookService guestBookService;
 
     @GetMapping
     public String guestBook(Model model, Authentication authentication){
         List<GuestBook> mentions = guestRepository.findAll(Sort.by(Sort.Direction.DESC, "time"));
         model.addAttribute("mentions", mentions);
-        model.addAttribute("userId", guestBookService.findAuthUser(authentication));
+        User user = userRepository.findByUsername(authentication.getName()) ;
+        model.addAttribute("user", user);
         return "guest/list";
     }
 

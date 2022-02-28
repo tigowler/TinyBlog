@@ -1,7 +1,6 @@
 package com.neoAA.TinyBoard.controller.api;
 
 import com.neoAA.TinyBoard.model.GuestBook;
-import com.neoAA.TinyBoard.model.Post;
 import com.neoAA.TinyBoard.model.User;
 import com.neoAA.TinyBoard.repository.GuestRepository;
 import com.neoAA.TinyBoard.repository.UserRepository;
@@ -12,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api")
@@ -31,6 +32,33 @@ public class GuestBookApiController {
     @PostMapping("/guest")
     GuestBook newComment(@RequestBody GuestBook newGuestBook){
         return guestRepository.save(newGuestBook);
+    }
+
+    //LOVE
+    @Secured("ROLE_USER")
+    @PutMapping("/guest/love/{id}")
+    void loveComment(@PathVariable Long id, Authentication authentication){
+        User user = userRepository.findByUsername(authentication.getName());
+        GuestBook guestBook = guestRepository.findById(id).orElse(null);
+
+        user.getGuestBooksLoved().add(guestBook);
+        userRepository.save(user);
+    }
+
+    //UNLOVE
+    @Secured("ROLE_USER")
+    @PutMapping("/guest/unlove/{id}")
+    void unLoveComment(@PathVariable Long id, Authentication authentication){
+        User user = userRepository.findByUsername(authentication.getName());
+        List<GuestBook> newLovedComments = new ArrayList<>();
+        for (GuestBook g : user.getGuestBooksLoved()){
+            if (Objects.equals(g.getId(), id)) continue;
+            newLovedComments.add(g);
+        }
+
+        user.getGuestBooksLoved().clear();
+        user.getGuestBooksLoved().addAll(newLovedComments);
+        userRepository.save(user);
     }
 
     @GetMapping("/guest/{id}")

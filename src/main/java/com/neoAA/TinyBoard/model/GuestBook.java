@@ -6,6 +6,8 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -23,4 +25,8 @@ public class GuestBook {
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "guestBooksLoved")
+    private List<User> usersLoved = new ArrayList<>();
 }
