@@ -57,13 +57,16 @@ public class PostController {
     }
 
     @GetMapping("/form")
-    public String postForm(Model model, @RequestParam(required = false) Long id){
+    public String postForm(Model model, @RequestParam(required = false) Long id,
+                           HttpServletRequest request){
         if(id==null){
             model.addAttribute("post", new Post());
         } else {
             Post post = postRepository.findById(id).orElse(null);
             model.addAttribute("post", post);
         }
+        String referer = request.getHeader("Referer");
+        model.addAttribute("referer", referer);
         return "post/post-form";
     }
 
