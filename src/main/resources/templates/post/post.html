@@ -36,6 +36,7 @@
             class="btn btn-primary text-uppercase footer-btn"
             href="#!"
             th:href="@{/post/form(id=${post.id})}"
+            th:if="${isOwner}"
             >EDIT</a
           >
           <button

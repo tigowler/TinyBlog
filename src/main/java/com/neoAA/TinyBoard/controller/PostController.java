@@ -2,13 +2,14 @@ package com.neoAA.TinyBoard.controller;
 
 import com.neoAA.TinyBoard.Service.PostService;
 import com.neoAA.TinyBoard.model.Post;
+import com.neoAA.TinyBoard.model.User;
 import com.neoAA.TinyBoard.repository.PostRepository;
+import com.neoAA.TinyBoard.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/post")
@@ -25,15 +27,19 @@ public class PostController {
     private PostRepository postRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private PostService postService;
 
     @GetMapping
     public String post(Model model, @RequestParam(required = true) Long id,
-                       HttpServletRequest request){
+                       HttpServletRequest request, Authentication authentication){
         Post post = postRepository.findById(id).orElse(null);
         String referer = request.getHeader("Referer");
         model.addAttribute("post", post);
         model.addAttribute("referer", referer);
+        model.addAttribute("isOwner", postService.isOwner(authentication, post));
         return "post/post";
     }
 
