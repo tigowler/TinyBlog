@@ -89,6 +89,7 @@
                 th:href="@{/guest/form(id=${mention.id})}"
                 type="button"
                 class="btn btn-primary btn-accordion"
+                th:if="${mention.getUser.getId}==${userId}"
               >
                 EDIT
               </a>

@@ -2,7 +2,6 @@ package com.neoAA.TinyBoard.controller;
 
 import com.neoAA.TinyBoard.Service.PostService;
 import com.neoAA.TinyBoard.model.Post;
-import com.neoAA.TinyBoard.model.User;
 import com.neoAA.TinyBoard.repository.PostRepository;
 import com.neoAA.TinyBoard.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.Objects;
 
 @Controller
 @RequestMapping("/post")

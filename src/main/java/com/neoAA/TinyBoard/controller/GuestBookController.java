@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.security.Principal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -28,10 +27,10 @@ public class GuestBookController {
     private GuestBookService guestBookService;
 
     @GetMapping
-    public String guestBook(Model model){
+    public String guestBook(Model model, Authentication authentication){
         List<GuestBook> mentions = guestRepository.findAll(Sort.by(Sort.Direction.DESC, "time"));
         model.addAttribute("mentions", mentions);
-
+        model.addAttribute("userId", guestBookService.findAuthUser(authentication));
         return "guest/list";
     }
 
@@ -56,9 +55,6 @@ public class GuestBookController {
         if(bindingResult.hasErrors()){
             return "guest/form";
         }
-//        guestBook.setTime(Timestamp.valueOf(LocalDateTime.now()));
-//        guestBook.setName(principal.getName());
-//        guestRepository.save(guestBook);
         String username = authentication.getName();
         guestBookService.save(username, guestBook);
         return "redirect:/guest";

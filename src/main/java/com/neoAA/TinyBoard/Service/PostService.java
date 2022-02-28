@@ -1,13 +1,17 @@
 package com.neoAA.TinyBoard.Service;
 
 import com.neoAA.TinyBoard.model.Post;
+import com.neoAA.TinyBoard.model.Role;
 import com.neoAA.TinyBoard.model.User;
 import com.neoAA.TinyBoard.repository.PostRepository;
 import com.neoAA.TinyBoard.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Service
