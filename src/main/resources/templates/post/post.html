@@ -24,13 +24,16 @@
             </span>
           </div>
         </div>
-        <div class="d-flex justify-content-end mb-4">
+        <div id="div_love" class="d-flex justify-content-end mb-4">
           <button
             type="button"
             id="love_btn"
             class="btn btn-danger btn-accordion"
             th:onclick="|loveTogglePost(${post.id})|"
             sec:authorize="isAuthenticated()"
+            data-bs-toggle="tooltip"
+            data-bs-placement="left"
+            th:title="|💕${#lists.size(post.usersLoved)}|"
           >
             <span
               th:text="${user!=null and #lists.contains(user.postsLoved, post)} ? 'UNLOVE' : 'LOVE'"
@@ -91,6 +94,7 @@
         });
       }
 
+      const loveDiv = document.querySelector("#div_love");
       //PUT /api/post/love/{id}
       function loveTogglePost(id) {
         const loveBtn = document.querySelector("#love_btn");
@@ -105,6 +109,11 @@
             },
             success: function (result) {
               loveBtn.firstElementChild.innerHTML = "UNLOVE";
+              const nums = loveBtn.getAttribute("data-bs-original-title");
+              loveBtn.setAttribute(
+                "data-bs-original-title",
+                `💕${(parseInt(nums.substr(2)) + 1).toString()}`
+              );
             },
           });
         } //PUT /api/post/unlove/{id}
@@ -119,10 +128,23 @@
             },
             success: function (result) {
               loveBtn.firstElementChild.innerHTML = "LOVE";
+              const nums = loveBtn.getAttribute("data-bs-original-title");
+              loveBtn.setAttribute(
+                "data-bs-original-title",
+                `💕${(parseInt(nums.substr(2)) - 1).toString()}`
+              );
             },
           });
         }
       }
+    </script>
+    <script>
+      var tooltipTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      );
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
     </script>
   </body>
 </html>
