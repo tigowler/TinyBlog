@@ -32,7 +32,9 @@
             th:onclick="|loveTogglePost(${post.id})|"
             sec:authorize="isAuthenticated()"
           >
-            <span th:text="${love}">LOVE</span>
+            <span
+              th:text="${user!=null and #lists.contains(user.postsLoved, post)} ? 'UNLOVE' : 'LOVE'"
+            ></span>
           </button>
         </div>
       </div>
