@@ -40,17 +40,6 @@ public class PostController {
         model.addAttribute("referer", referer);
         model.addAttribute("isOwner", postService.isOwner(authentication, post));
 
-//        if (authentication==null){
-//            model.addAttribute("love", "LOVE");
-//            return "post/post";
-//        }
-//        User user = userRepository.findByUsername(authentication.getName());
-//        if(user.getPostsLoved().contains(post)){
-//            model.addAttribute("love", "UNLOVE");
-//        }
-//        else {
-//            model.addAttribute("love", "LOVE");
-//        }
         if (authentication==null){
             model.addAttribute("user", null);
         }

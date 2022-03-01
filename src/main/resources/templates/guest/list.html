@@ -51,7 +51,14 @@
               th:aria-controls="|accordion-collapse${mention.id}|"
               aria-current="true"
             >
-              <h1>💖</h1>
+              <h1
+                data-bs-toggle="tooltip"
+                data-bs-placement="left"
+                title="Administrator"
+                th:title="|💕${#lists.size(mention.usersLoved)}|"
+              >
+                💖
+              </h1>
               <div class="d-flex gap-2 w-100 justify-content-between">
                 <div>
                   <h5 class="mb-0" th:text="|@${mention.user.username}|">
@@ -165,6 +172,14 @@
           });
         }
       }
+    </script>
+    <script>
+      var tooltipTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      );
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
     </script>
   </body>
 </html>
