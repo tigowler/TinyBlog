@@ -103,6 +103,7 @@
                 type="button"
                 class="btn btn-primary btn-accordion"
                 th:if="${mention.getUser.getId}==${user.getId}"
+                sec:authorize="isAuthenticated()"
               >
                 EDIT
               </a>

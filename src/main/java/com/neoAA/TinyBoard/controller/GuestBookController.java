@@ -35,8 +35,11 @@ public class GuestBookController {
     public String guestBook(Model model, Authentication authentication){
         List<GuestBook> mentions = guestRepository.findAll(Sort.by(Sort.Direction.DESC, "time"));
         model.addAttribute("mentions", mentions);
-        User user = userRepository.findByUsername(authentication.getName()) ;
-        model.addAttribute("user", user);
+
+        if (authentication!=null){
+            User user = userRepository.findByUsername(authentication.getName());
+            model.addAttribute("user", user);
+        }
         return "guest/list";
     }
 
