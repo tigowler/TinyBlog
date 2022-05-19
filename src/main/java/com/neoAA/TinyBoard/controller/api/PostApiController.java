@@ -89,6 +89,27 @@ public class PostApiController {
     @Secured("ROLE_ADMIN")
     @DeleteMapping("/post/{id}")
     void deletePost(@PathVariable Long id){
+        Post post = postRepository.findById(id).orElse(null);
+        List<Post> postList = post.getUser().getPost();
+        List<Post> newPosts = new ArrayList<>();
+        for (Post p: postList){
+            if (p.getId()!=id){
+                newPosts.add(p);
+            }
+        }
+        post.getUser().setPost(newPosts);
+
+        List<User> userList = userRepository.findAll();
+        for (User user: userList){
+            List<Post> posts = user.getPostsLoved();
+            List<Post> newPostList = new ArrayList<>();
+            for (Post p: posts){
+                if (p.getId()!=id){
+                    newPostList.add(p);
+                }
+            }
+            user.setPostsLoved(newPostList);
+        }
         postRepository.deleteById(id);
     }
 }

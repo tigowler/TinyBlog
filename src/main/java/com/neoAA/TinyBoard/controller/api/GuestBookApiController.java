@@ -83,6 +83,28 @@ public class GuestBookApiController {
     @Secured("ROLE_ADMIN")
     @DeleteMapping("/guest/{id}")
     void deleteComment(@PathVariable Long id){
+        GuestBook guestBook = guestRepository.findById(id)
+                .orElse(null);
+        List<GuestBook> guestBooks = guestBook.getUser().getGuestBooks();
+        List<GuestBook> newGuestBooks = new ArrayList<>();
+        for(GuestBook book : guestBooks){
+            if (book.getId()!=id){
+                newGuestBooks.add(book);
+            }
+        }
+        guestBook.getUser().setGuestBooks(newGuestBooks);
+
+        List<User> userList = userRepository.findAll();
+        for (User user: userList){
+            List<GuestBook> guestBookList = user.getGuestBooksLoved();
+            List<GuestBook> nGuestBooks = new ArrayList<>();
+            for (GuestBook book: guestBookList){
+                if (book.getId()!=id){
+                    nGuestBooks.add(book);
+                }
+            }
+            user.setGuestBooksLoved(nGuestBooks);
+        }
         guestRepository.deleteById(id);
     }
 }

@@ -68,10 +68,4 @@ public class GuestBookController {
         guestBookService.save(username, guestBook);
         return "redirect:/guest";
     }
-
-    @DeleteMapping("/{id}")
-    public String deleteComment(@PathVariable Long id){
-        guestRepository.deleteById(id);
-        return "redirect:/guest";
-    }
 }
