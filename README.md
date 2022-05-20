@@ -13,7 +13,7 @@
 ## 👀 Screenshot
 ### 일반 사용자  
 <details>
-<summary>로그인</summary>
+<summary>로그인, 회원가입</summary>
 <div markdown="1">
   
 ![tinyblog_login](https://user-images.githubusercontent.com/92033114/169358190-6658507f-9149-42b0-a3b3-e4f5ae40edd7.gif)
