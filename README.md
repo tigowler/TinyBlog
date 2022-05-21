@@ -21,7 +21,7 @@
 </div>
 </details>
 <details>
-<summary>방명록</summary>
+<summary>방명록 작성, 수정</summary>
 <div markdown="1">
  
 ![tinyblog_guestbook](https://user-images.githubusercontent.com/92033114/169359629-e1bba2db-d82f-48e4-b009-ec4365902484.gif)
@@ -29,11 +29,10 @@
 </div>
 </details>
 <details>
-<summary>게시글</summary>
+<summary>게시글 작성, 수정, 로그아웃</summary>
 <div markdown="1">
  
-![tinyblog_post_short](https://user-images.githubusercontent.com/92033114/169358476-317e544d-4c7d-4895-8261-d265c9359339.gif)
-
+![tinyblog_post_short](https://user-images.githubusercontent.com/92033114/169644942-e7681aa0-3e13-4981-9de3-5a9c788d032c.gif)
 
 </div>
 </details>  
