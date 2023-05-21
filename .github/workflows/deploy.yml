@@ -22,7 +22,7 @@ jobs:
         run: mvn clean package
 
       - name: Deploy to AWS CodeDeploy
-        uses: aws-actions/aws-codedeploy-appspec-action@v1
+        uses: sourcetoad/aws-codedeploy-action@v1
         with:
           appspec: appspec.yml
           codedeploy-application: TinyBlogCodeDeploy
